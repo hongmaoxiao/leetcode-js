@@ -33,3 +33,24 @@ const reverseList1 = (head) => {
 
   return newHead
 };
+
+const reverseList2 = (head) => {
+  if (!head) {
+    return head
+  }
+
+  const handle = (node) => {
+    if (!node.next) {
+      result = node
+    } else {
+      handle(node.next).next = node
+      node.next = null
+    }
+    return node
+  }
+
+  let result
+  handle(head)
+  
+  return result
+};
