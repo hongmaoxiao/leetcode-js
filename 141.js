@@ -27,3 +27,21 @@ const hasCycle = (head) => {
   }
   return false
 }
+
+const hasCycle1 = (head) => {
+  if (!head || !head.next) {
+    return false
+  }
+
+  let slow = head
+  let fast = head.next
+
+  while (slow !== fast) {
+    if (fast.next === null || fast.next.next === null) {
+      return false
+    }
+    slow = slow.next
+    fast = fast.next.next
+  }
+  return true
+}
