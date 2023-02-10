@@ -21,3 +21,15 @@ const reverseList = (head) => {
 
   return prev
 };
+
+const reverseList1 = (head) => {
+  if (!head || !head.next) {
+    return head
+  }
+
+  const newHead = reverseList1(head.next)
+  head.next.next = head
+  head.next = null
+
+  return newHead
+};
