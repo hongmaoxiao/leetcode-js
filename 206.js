@@ -10,7 +10,7 @@
  * @return {ListNode}
  */
 const reverseList = (head) => {
-  let prev = head, curr = null
+  let prev = null, curr = head
 
   while (curr) {
     const temp = curr.next
