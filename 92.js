@@ -43,7 +43,7 @@ const reverseBetween = (head, left, right) => {
     curr = curr.next
   }
 
-  return curr
+  return head
 };
 
 // 翻转链表
@@ -93,6 +93,33 @@ const reverseBetween1 = (head, left, right) => {
 
   pre.next = rightNode
   leftNode.next = rightNext
+ 
+  return dummyNode.next
+};
+
+const reverseBetween2 = (head, left, right) => {
+  if (!head || !head.next || left === right) {
+    return head
+  }
+
+  const dummyNode = new ListNode(-1)
+  dummyNode.next = head
+
+  // 被截断左边节点的前一个node
+  let pre = dummyNode
+
+  for (let i = 0; i < left - 1; i++) {
+    pre = pre.next
+  }
+
+  let curr = pre.next
+
+  for (let j = 0; j < right - left; j++) {
+    const next = curr.next
+    curr.next = next.next
+    next.next = pre.next
+    pre.next = next
+  }
  
   return dummyNode.next
 };
