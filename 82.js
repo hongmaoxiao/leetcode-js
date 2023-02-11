@@ -31,3 +31,22 @@ const deleteDuplicates = (head) => {
 
   return dummyNode.next
 };
+
+// 递归解法
+const deleteDuplicates1 = (head) => {
+  if (!head || !head.next) {
+    return head
+  }
+
+  if (head.val !== head.next.val) {
+    head.next = deleteDuplicates1(head.next)
+  } else {
+    let curr = head.next
+    while (curr && head.val === curr.val) {
+      curr = curr.next
+    }
+    return deleteDuplicates1(curr)
+  }
+
+  return head
+};
