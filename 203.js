@@ -30,3 +30,19 @@ const removeElements = (head, val) => {
   
   return head
 };
+
+const removeElements1 = (head, val) => {
+  let dummyHead = new ListNode(0) // 添加虚拟节点，指向head
+  dummyHead.next = head
+
+  let curr = dummyHead
+  while (curr.next !== null) {
+    if (curr.next.val === val) {
+      curr.next = curr.next.next
+    } else {
+      curr = curr.next
+    }
+  }
+  
+  return dummyHead.next
+};
