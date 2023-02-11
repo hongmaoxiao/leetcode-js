@@ -57,3 +57,26 @@ const isPalindrome1 = (head) => {
 
   return true
 };
+
+
+let front
+
+const recursion = (node) => {
+  if (node !== null) {
+    if (!recursion(node.next)) {
+      return false
+    }
+    if (front.val !== node.val) {
+      return false
+    }
+
+    front = front.next
+  }
+
+  return true
+}
+
+const isPalindrome2 = (head) => {
+  front = head
+  return recursion(head)
+};
