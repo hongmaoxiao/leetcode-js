@@ -11,7 +11,7 @@
  */
 const reorderList = (head) => {
   if (!head) {
-    return head
+    return
   }
 
   const arr = []
@@ -76,7 +76,7 @@ const mergeList = (left, right) => {
 
 const reorderList1 = (head) => {
   if (!head) {
-    return head
+    return
   }
 
   let middle = middleNode(head)
