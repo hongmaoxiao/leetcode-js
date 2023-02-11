@@ -41,6 +41,7 @@ const isPalindrome = (head) => {
   return true
 };
 
+// 方法2
 const isPalindrome1 = (head) => {
   const arr = []
 
@@ -59,6 +60,7 @@ const isPalindrome1 = (head) => {
 };
 
 
+// 方法3
 let front
 
 const recursion = (node) => {
@@ -79,4 +81,54 @@ const recursion = (node) => {
 const isPalindrome2 = (head) => {
   front = head
   return recursion(head)
+};
+
+
+// 方法4
+const reverseList = (head) => {
+  let prev = null, curr = head
+
+  while (curr) {
+    const temp = curr.next
+    curr.next = prev
+    prev = curr
+    curr = temp
+  }
+
+  return prev
+};
+
+const endOfFirstHalf = (head) => {
+  let fast = head
+  let slow = head
+
+  while (fast.next !== null && fast.next.next !== null) {
+    fast = fast.next.next
+    slow = slow.next
+  }
+
+  return slow
+}
+
+const isPalindrome3 = (head) => {
+  if (head === null) {
+    return false
+  }
+
+  const firstHalfLast = endOfFirstHalf(head)
+  const lastHalfReverse = reverseList(firstHalfLast.next)
+
+  let result = true
+  let p = head
+  let e = lastHalfReverse
+
+  while (result && e) {
+    if (p.val !== e.val) {
+      return false
+    }
+    p = p.next
+    e = e.next
+  }
+
+  return true
 };
