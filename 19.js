@@ -131,3 +131,24 @@ const removeNthFromEnd3 = (head, n) => {
 
   return dummyNode.next
 }
+
+// 双指针法
+const removeNthFromEnd4 = (head, n) => {
+  const dummyNode = new ListNode(-1, head)
+
+  let secode = dummyNode
+  let first = head
+
+  for (let i = 0; i < n; i++) {
+    first = first.next
+  }
+
+  while (first) {
+    first = first.next
+    secode = secode.next
+  }
+
+  secode.next = secode.next.next
+
+  return dummyNode.next
+}
