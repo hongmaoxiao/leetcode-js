@@ -42,6 +42,7 @@ const removeNthFromEnd = (head, n) => {
   return head
 };
 
+// 加虚拟头部，优化第一种方法
 const removeNthFromEnd1 = (head, n) => {
   if (!head) {
     return head
@@ -69,3 +70,43 @@ const removeNthFromEnd1 = (head, n) => {
 
   return dummyNode.next
 };
+
+const reverseList = (head) => {
+  let prev = null, curr = head
+
+  while (curr) {
+    const temp = curr.next
+    curr.next = prev
+    prev = curr
+    curr = temp
+  }
+
+  return prev
+};
+
+// 倒转删除后倒转回来
+const removeNthFromEnd2 = (head, n) => {
+  if (!head) {
+    return head
+  }
+
+  head = reverseList(head)
+
+  // 第一个删除头部
+  if (n === 1) {
+    head = head.next
+    return reverseList(head)
+  }
+
+  let curr = head
+  let i = 1
+  while (curr) {
+    if (i === n - 1) {
+      curr.next = curr.next.next
+      break
+    }
+    i++
+    curr = curr.next
+  }
+  return reverseList(head)
+}
