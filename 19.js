@@ -41,3 +41,31 @@ const removeNthFromEnd = (head, n) => {
 
   return head
 };
+
+const removeNthFromEnd1 = (head, n) => {
+  if (!head) {
+    return head
+  }
+
+  const dummyNode = new ListNode(-1, head)
+
+  const arr = []
+  let curr = dummyNode
+  while (curr) {
+    arr.push(curr)
+    curr = curr.next
+  }
+
+  let i = 0
+  curr = dummyNode
+  while (curr) {
+    if (i === arr.length - n - 1) {
+      curr.next = curr.next.next
+      break
+    }
+    i++
+    curr = curr.next
+  }
+
+  return dummyNode.next
+};
