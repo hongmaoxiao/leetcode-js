@@ -110,3 +110,24 @@ const removeNthFromEnd2 = (head, n) => {
   }
   return reverseList(head)
 }
+
+// 入栈出栈
+const removeNthFromEnd3 = (head, n) => {
+  const dummyNode = new ListNode(-1, head)
+
+  const arr = []
+  let curr = dummyNode
+  while (curr) {
+    arr.push(curr)
+    curr = curr.next
+  }
+
+  for (let i = 0; i < n; i++) {
+    arr.pop()
+  }
+
+  curr = arr[arr.length - 1]
+  curr.next = curr.next.next
+
+  return dummyNode.next
+}
