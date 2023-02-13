@@ -43,3 +43,41 @@ const rotateRight = (head, k) => {
 
   return dummyNode.next
 };
+
+const rotateRight1 = (head, k) => {
+  if (!head || !head.next || k === 0) {
+    return head
+  }
+
+  let len = 0
+  let node = head
+  while (node) {
+    len++
+    node = node.next
+  }
+
+  // 取余，否则浪费时间
+  k = k % len 
+
+  let dummyNode = new ListNode(-1, head)
+  let curr = head
+  while (curr) {
+    if (curr && curr.next === null) {
+      curr.next = dummyNode.next
+      break
+    }
+    curr = curr.next
+  }
+
+  curr = head
+  
+  for (let i = 0; i < len - 1 - k; i++) {
+    curr = curr.next    
+  }
+
+  const temp = curr.next
+  curr.next = null
+  curr = temp
+
+  return curr
+};
