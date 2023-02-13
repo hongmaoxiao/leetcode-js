@@ -70,7 +70,7 @@ const rotateRight1 = (head, k) => {
   }
 
   curr = head
-  
+
   for (let i = 0; i < len - 1 - k; i++) {
     curr = curr.next    
   }
@@ -80,4 +80,34 @@ const rotateRight1 = (head, k) => {
   curr = temp
 
   return curr
+};
+
+const rotateRight2 = (head, k) => {
+  if (!head || !head.next || k === 0) {
+    return head
+  }
+
+  let len = 1
+  let curr = head
+  while (curr.next) {
+    len++
+    curr = curr.next
+  }
+
+  let add = len - k % len
+  if (add === len) {
+    return head
+  }
+
+  curr.next = head
+
+  while (add) {
+    curr = curr.next
+    add--
+  }
+
+  const ret = curr.next
+  curr.next = null
+
+  return ret
 };
