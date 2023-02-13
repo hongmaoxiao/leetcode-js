@@ -59,3 +59,49 @@ const merge = (head, tail) => {
 
   return dummyNode.next
 }
+
+const sortList1 = (head) => {
+  if (!head) {
+    return head
+  }
+
+  let len = 0,
+  node = head
+  while (node) {
+    len++
+    node = node.next
+  }
+
+  const dummyNode = new ListNode(0, head)
+  for (let subLength = 1; subLength < len; subLength <<= 1) {
+    let prev = dummyNode, curr = dummyNode.next
+    while (curr) {
+      let head1 = curr
+      for (let i = 1; i < subLength && curr.next; i++) {
+        curr = curr.next
+      }
+      let head2 = curr.next
+      curr.next = null
+      curr = head2
+      for (let i = 1; i < subLength && curr && curr.next; i++) {
+        curr = curr.next
+      }
+
+      let next = null
+      if (curr) {
+        next = curr.next
+        curr.next = null
+      }
+      
+      const mergeList = merge(head1, head2)
+      prev.next = mergeList
+      while (prev.next) {
+        prev = prev.next
+      }
+
+      curr = next
+    }
+  }
+
+  return dummyNode.next
+}
