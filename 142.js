@@ -26,3 +26,29 @@ const detectCycle = (head) => {
 
     return null
 };
+
+const detectCycle1 = (head) => {
+  if (!head || !head.next) {
+    return null
+  }
+
+  let slow = head, fast = head
+  while (fast) {
+    slow = slow.next
+    if (fast.next !== null) {
+      fast = fast.next.next
+    } else {
+      return null
+    }
+    if (fast === slow) {
+      let ptr = head
+      while (slow !== ptr) {
+        ptr = ptr.next
+        slow = slow.next
+      }
+      return ptr
+    }
+  }
+
+  return null
+};
