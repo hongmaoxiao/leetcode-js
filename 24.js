@@ -36,3 +36,22 @@ const swapPairs = (head) => {
 
   return dummyNode.next
 };
+
+const swapPairs1 = (head) => {
+  if (!head || !head.next) {
+    return head
+  }
+
+  const dummyNode = new ListNode(-1, head)
+  let temp = dummyNode
+  while (temp.next && temp.next.next) {
+    const node1 = temp.next
+    const node2 = temp.next.next
+    node1.next = node2.next
+    node2.next = node1
+    temp.next = node2
+    temp = node1
+  }
+
+  return dummyNode.next
+};
