@@ -55,3 +55,14 @@ const swapPairs1 = (head) => {
 
   return dummyNode.next
 };
+
+const swapPairs2 = (head) => {
+  if (!head || !head.next) {
+    return head
+  }
+
+  const newHead = head.next
+  head.next = swapPairs2(newHead.next)
+  newHead.next = head
+  return newHead
+};
