@@ -38,12 +38,7 @@ const mergeTwoLists = (list1, list2) => {
     const temp2 = curr2.next
 
     if (temp1 === null) {
-      while (curr2) {
-        const temp = curr2.next
-        curr1.next = curr2
-        curr1 = curr2
-        curr2 = temp
-      }
+      curr1.next = curr2
       break
     }
     if (curr1.val <= curr2.val && curr2.val <= curr1.next.val) {
@@ -58,3 +53,23 @@ const mergeTwoLists = (list1, list2) => {
 
   return head === 1 ? list1 : list2;
 };
+
+const mergeTwoLists1 = (list1, list2) => {
+  const dummyHead = new ListNode(-1)
+  let prev = dummyHead
+
+  while (list1 && list2) {
+    if (list1.val <= list2.val) {
+      prev.next = list1
+      list1 = list1.next
+    } else {
+      prev.next = list2
+      list2 = list2.next
+    }
+    prev = prev.next
+  }
+
+  prev.next = list1 === null ? list2 : list1
+
+  return dummyHead.next
+}
