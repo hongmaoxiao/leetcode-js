@@ -26,3 +26,48 @@ const backspaceCompare = (s, t) => {
 
   return stack1.join('') === stack2.join('')
 };
+
+const backspaceCompare1 = (s, t) => {
+  let len1 = s.length - 1, len2 = t.length - 1
+  let skipS = 0
+  let skipT = 0
+
+  while (len1 >= 0 || len2 >= 0) {
+    while (len1 >= 0) {
+      if (s[len1] === '#') {
+        skipS += 1
+        len1 -= 1
+      } else if (skipS > 0) {
+        skipS -= 1
+        len1 -= 1
+      } else {
+        break
+      }
+    }
+
+    while (len2 >= 0) {
+      if (t[len2] === '#') {
+        skipT += 1
+        len2 -= 1
+      } else if (skipT > 0) {
+        skipT -= 1
+        len2 -= 1
+      } else {
+        break
+      }
+    }
+
+    if (len1 >= 0 && len2 >= 0) {
+      if (s[len1] !== t[len2]) {
+        return false
+      }
+    } else if (len1 >= 0 || len2 >= 0) {
+      return false
+    }
+
+    len1 -= 1
+    len2 -= 1
+  }
+
+  return true
+};
