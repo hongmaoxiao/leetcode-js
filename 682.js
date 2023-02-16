@@ -11,22 +11,23 @@ const calPoints = (operations) => {
     if (stack.length) {
       const top = stack[stack.length - 1]
       if (curr === 'C') {
+        sum -= top
         stack.pop()
       } else if (curr === 'D') {
+        sum += top * 2
         stack.push(top * 2)
       } else if (curr === '+') {
         const prev = stack[stack.length - 2]
+        sum += (prev + top)
         stack.push((prev + top))
       } else {
         stack.push(+curr)
+        sum += parseInt(curr)
       }
     } else {
       stack.push(+curr)
+      sum += parseInt(curr)
     }
-  }
-
-  for (let j = 0; j < stack.length; j++) {
-    sum += +stack[j]
   }
 
   return sum
