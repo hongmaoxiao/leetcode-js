@@ -44,3 +44,45 @@ const decodeString = (s) => {
 
   return str;
 };
+
+const decodeString1 = (s) => {
+  const len = s.length
+  let i = 0
+  let stack = [];
+
+ while (i < len) {
+  const ele = s[i]
+   if (ele === "]") {
+      i++
+      let pop = stack.pop()
+      let curr = ''
+      while (pop !== '[') {
+        curr = `${pop}${curr}`
+        pop = stack.pop()
+      }
+      const number = stack.pop()
+      curr = curr.repeat(number)
+      stack.push(curr)
+    } else {
+      if (isNumber(ele)) {
+        let res = ''
+        let item = s[i]
+        while (i < len && isNumber(item)) {
+          res = `${res}${item}`
+          i++
+          item = s[i]
+        }
+        stack.push(+res)
+      } else {
+        stack.push(ele)
+        i++
+      }
+    }
+  }
+  return stack.join('');
+};
+
+const isNumber = (val) => {
+  const parse = parseInt(val)
+  return Number.isInteger(parse)
+}
