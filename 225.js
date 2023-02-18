@@ -10,7 +10,7 @@ var MyStack = function() {
 MyStack.prototype.push = function(x) {
   this.queue2.push(x)
   while (this.queue1.length) {
-    this.queue2.push(this.queue1.pop())
+    this.queue2.unshift(this.queue1.pop())
   }
   const temp = this.queue1
   this.queue1 = this.queue2
