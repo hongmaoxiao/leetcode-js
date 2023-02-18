@@ -44,3 +44,37 @@ const minRemoveToMakeValid = (s) => {
 
   return stack.join('')
 };
+
+const minRemoveToMakeValid1 = (s) => {
+  const len = s.length
+  let remove = []
+  const stack = []
+
+  for (let i = 0; i < len; i++) {
+    const curr = s[i];
+    if (curr !== '(' && curr !== ')') {
+      continue
+    }
+    if (curr === '(') {
+      stack.push(i)
+    } else {
+      if (stack.length === 0) {
+        remove.push(i)
+      } else {
+        stack.pop()
+      }
+    }
+  }
+
+  remove = remove.concat(stack)
+
+  const res = []
+  for (let i = 0; i < len; i++) {
+    const curr = s[i];
+    if (!remove.includes(i)) {
+      res.push(curr)
+    }
+  }
+
+  return res.join('')
+}
