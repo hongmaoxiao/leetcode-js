@@ -11,7 +11,6 @@ const scoreOfParentheses = (s) => {
     if (curr === '(') {
       stack.push(curr)
     } else {
-      console.log('stack: ', stack)
       const pop = stack.pop()
       if (pop === '(') {
         stack.push(1)
