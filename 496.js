@@ -31,3 +31,30 @@ const nextGreaterElement = (nums1, nums2) => {
 
   return res
 };
+
+// 哈希+单调栈
+const nextGreaterElement1 = (nums1, nums2) => {
+  const len = nums2.length
+  const retMap = {}
+  const stack = []
+
+  for (let i = 0; i < len; i++) {
+    const curr = nums2[i];
+
+    while (stack.length && nums2[stack[stack.length - 1]] < curr) {
+      retMap[nums2[stack[stack.length - 1]]] = curr
+      stack.pop()
+    }
+
+    stack.push(i)
+  }
+
+  let res = []
+  for (let i = 0; i < nums1.length; i++) {
+    const curr = nums1[i];
+    const value = retMap[curr] === undefined ? -1 : retMap[curr]
+    res.push(value)
+  }
+
+  return res
+};
