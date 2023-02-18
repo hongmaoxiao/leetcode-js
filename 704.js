@@ -14,7 +14,6 @@ const search = (nums, target) => {
     const curr = nums[mid]
     if (curr === target) {
       return mid
-      break
     } else if (target > curr) {
       low = mid + 1
     } else {
