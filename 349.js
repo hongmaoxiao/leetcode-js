@@ -11,8 +11,6 @@ const intersection = (nums1, nums2) => {
 };
 
 const set_intersection = (set1, set2) => {
-  console.log(set1.size)
-  console.log(set2.size)
   if (set1.size > set2.size) {
     return set_intersection(set2, set1)
   }
