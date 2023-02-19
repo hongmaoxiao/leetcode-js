@@ -47,3 +47,25 @@ const firstUniqChar1 = (s) => {
 
   return -1
 }
+
+const firstUniqChar2 = (s) => {
+  const map = new Map()
+  const len = s.length
+
+  for (let i = 0; i < len; i++) {
+    const curr = s[i];
+    if (map.has(curr)) {
+      map.set(curr, -1)
+    } else {
+      map.set(curr, 1)
+    }
+  }
+
+  for (let i = 0; i < s.length; i++) {
+    const val = map.get(s[i])
+    if (val === 1) {
+      return i
+    }
+  }
+  return -1
+};
