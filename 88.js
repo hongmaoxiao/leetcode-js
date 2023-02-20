@@ -42,3 +42,24 @@ const merge = (nums1, m, nums2, n) => {
     ls++
   }
 };
+
+const merge1 = (nums1, m, nums2, n) => {
+  const res = new Array(m + n).fill(0)
+  let l1 = 0, l2 = 0
+  let curr = null
+  while (l1 < m || l2 < n) {
+    if (l1 === m) {
+      curr = nums2[l2++]
+    } else if (l2 === n) {
+      curr = nums1[l1++]
+    } else if (nums1[l1] <= nums2[l2]) {
+      curr = nums1[l1++]
+    } else {
+      curr = nums2[l2++]
+    }
+    res[l1 + l2 - 1] = curr
+  }
+  for (let i = 0; i < res.length; i++) {
+    nums1[i] = res[i]
+  }
+}
