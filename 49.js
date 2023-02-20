@@ -14,3 +14,15 @@ const groupAnagrams = (strs) => {
   }
   return Array.from(map.values())
 };
+
+const groupAnagrams1 = (strs) => {
+  const map = {}
+  for (const ch of strs) {
+    const count = new Array(26).fill(0)
+    for (const s of ch) {
+      count[s.charCodeAt() - 'a'.charCodeAt()]++
+    }
+    map[count] ? map[count].push(ch) : map[count] = [ch]
+  }
+  return Object.values(map)
+}
