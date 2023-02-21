@@ -36,3 +36,26 @@ const isAnagram = (s, t) => {
 
   return true
 };
+
+const isAnagram1 = (s, t) => {
+  const len_s = s.length
+  const len_t = t.length
+
+  if (len_s !== len_t) {
+    return false
+  }
+  
+  const table = new Array(26).fill(0)
+  for (let i = 0; i < len_s; i++) {
+    table[s.codePointAt(i) - 'a'.codePointAt(0)]++
+  }
+
+  for (let i = 0; i < len_t; i++) {
+    table[t.codePointAt(i) - 'a'.codePointAt(0)]--
+    if (table[t.codePointAt(i) - 'a'.codePointAt(0)] < 0) {
+      return false
+    }
+  }
+
+  return true
+}
