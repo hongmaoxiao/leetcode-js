@@ -21,3 +21,24 @@ const reverseStr = (s, k) => {
   return arr.join('')
 };
 
+const reverseStr1 = (s, k) => {
+  const len = s.length
+  const arr = s.split('')
+
+  for (let i = 0; i < len; i += 2 * k) {
+    const j = Math.min(i + k - 1, len - 1)
+    reverse(arr, i, j)
+
+  }
+  return arr.join('')
+};
+
+const reverse = (arr, start, end) => {
+  while (start < end) {
+    const temp = arr[end]
+    arr[end] = arr[start]
+    arr[start] = temp
+    start++
+    end--
+  }
+}
