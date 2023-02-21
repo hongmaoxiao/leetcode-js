@@ -16,3 +16,17 @@ const subarraySum = (nums, k) => {
   }
   return count
 };
+
+const subarraySum1 = (nums, k) => {
+  const map = new Map()
+  map.set(0, 1)
+  let pre = 0, count = 0
+  for (const num of nums) {
+    pre += num
+    if (map.has(pre - k)) {
+      count += map.get(pre - k)
+    }
+    map.has(pre) ? map.set(pre, map.get(pre) + 1) : map.set(pre, 1)
+  }
+  return count
+};
