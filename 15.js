@@ -7,6 +7,9 @@ const threeSum = (nums) => {
   const arr = []
   nums.sort((a, b) => a - b)
   for (let i = 0; i < len - 2; i++) {
+    if (nums[i] > 0) {
+      break
+    }
     if (i > 0 && nums[i] === nums[i - 1]) {
       continue
     }
