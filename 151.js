@@ -49,3 +49,7 @@ const reverse = (arr) => {
     end--
   }
 }
+
+const reverseWords2 = (s) => {
+  return s.trim().split(/\s+/).reverse().join(' ')
+}
