@@ -46,3 +46,19 @@ const sortColors1 = (nums) => {
     }
   }
 };
+
+const sortColors2 = (nums) => {
+  const len = nums.length
+  let ptr0 = 0, ptr2 = len - 1
+
+  for (let i = 0; i <= ptr2; i++) {
+    while (i <= ptr2 && nums[i] === 2) {
+      [nums[ptr2], nums[i]] = [nums[i], nums[ptr2]]
+      ptr2--
+    }
+    if (nums[i] === 0) {
+      [nums[ptr0], nums[i]] = [nums[i], nums[ptr0]]
+      ptr0++
+    }
+  }
+};
