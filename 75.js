@@ -19,3 +19,30 @@ const sortColors = (nums) => {
     }
   }
 };
+
+const sortColors1 = (nums) => {
+  const len = nums.length
+  let ptr0 = 0, ptr1 = 0
+
+  for (let i = 0; i < len; i++) {
+    const curr = nums[i];
+    if (curr === 2) {
+      continue
+    }
+    if (curr === 1) {
+      [nums[ptr1], nums[i]] = [nums[i], nums[ptr1]]
+      ptr1++
+    }
+
+    if (curr === 0) {
+      if (ptr0 === ptr1) {
+        [nums[ptr0], nums[i]] = [nums[i], nums[ptr0]]
+      } else {
+        [nums[ptr0], nums[i]] = [nums[i], nums[ptr0]]
+        [nums[ptr1], nums[i]] = [nums[i], nums[ptr1]]
+      }
+      ptr0++
+      ptr1++
+    }
+  }
+};
