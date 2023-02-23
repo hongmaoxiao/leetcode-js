@@ -24,3 +24,18 @@ const loop = (node , arr) => {
   arr.push(node.val)
   loop(node.right, arr)
 }
+
+const inorderTraversal1 = (root) => {
+  const res = []
+  const stack = []
+  let node = root
+  while (stack.length !== 0 || node !== null) {
+    while (node !== null) {
+      stack.push(node)
+      node = node.left
+    }
+    node = stack.pop()
+    res.push(node.val)
+    node = node.right
+  }
+};
