@@ -48,3 +48,47 @@ const postorderTraversal1 = (root) => {
 
   return res
 };
+
+const postorderTraversal2 = (root) => {
+  const res = []
+  if (!root) {
+    return res
+  }
+  let p1 = root, p2 = null
+  while (p1 !== null) {
+    p2 = p1.left
+    if (p2 !== null) {
+      while (p2.right !== null && p2.right !== p1) {
+        p2 = p2.right
+      }
+      if (p2.right === null) {
+        p2.right = p1
+        p1 = p1.left
+        continue
+      } else {
+        p2.right = null
+        addPath(res, p1.left)
+      }
+    }
+    p1 = p1.right
+  }
+  addPath(res, root)
+  return res
+};
+
+const addPath = (arr, node) => {
+  let count = 0
+  while (node !== null) {
+    ++count
+    arr.push(node.val)
+    node = node.right
+  }
+  let left = arr.length - count, right = arr.length - 1
+  while (left < right) {
+    const temp = arr[left]
+    arr[left] = arr[right]
+    arr[right] = temp
+    left++
+    right--
+  }
+}
