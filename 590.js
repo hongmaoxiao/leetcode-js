@@ -66,13 +66,19 @@ const postorder2 = (root) => {
     return res
   }
   const stack = []
+  const visited = new Set()
   stack.push(root)
   while (stack.length) {
-    const node = stack.pop()
-    for (let i = 0; i < node.children.length; i++) {
+    const node = stack[stack.length - 1]
+    if (node.children.length === 0 || visited.has(node)) {
+      stack.pop()
+      res.push(node.val)
+      continue
+    }
+    for (let i = node.children.length - 1; i >= 0; i--) {
       stack.push(node.children[i]);
     }
-    res.push(node.val)
+    visited.add(node)
   }
 
   return res
