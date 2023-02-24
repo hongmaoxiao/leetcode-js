@@ -59,3 +59,22 @@ const preorder1 = (root) => {
 
   return ans
 };
+
+const preorder2 = (root) => {
+  const res = []
+  if (!root) {
+    return res
+  }
+
+  const stack = []
+  stack.push(root)
+  while (stack.length) {
+    const node = stack.pop()
+    res.push(node.val)
+    for (let i = node.children.length - 1; i >= 0; i--) {
+      stack.push(node.children[i])
+    }
+  }
+
+  return res
+}
