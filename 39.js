@@ -26,3 +26,25 @@ const combinationSum = (candidates, target) => {
   backtrack(target, [], 0)
   return ans
 };
+
+const combinationSum1 = (candidates, target) => {
+  const ans = []
+  
+  const backtrack = (target, combine, index, sum) => {
+    if (sum > target) {
+      return
+    }
+  
+    if (target === sum) {
+      ans.push(combine)
+      return
+    }
+
+    for (let i = index; i < candidates.length; i++) {
+      backtrack(target, [...combine, candidates[i]], i, sum + candidates[i])
+    }
+  }
+
+  backtrack(target, [], 0, 0)
+  return ans
+};
