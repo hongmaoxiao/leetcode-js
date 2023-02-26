@@ -48,4 +48,32 @@ const longestPalindrome = (s) => {
   return s.substring(begin, begin + maxLen)
 };
 
-console.log(longestPalindrome("abcba"))
+const longestPalindrome1 = (s) => {
+  const len = s.length
+  if (s === null || len < 2) {
+    return s
+  }
+  
+  let start = 0, end = 0
+  for (let i = 0; i < len; i++) {
+    const [left1, right1] = expand(s, i, i)
+    const [left2, right2] = expand(s, i, i + 1)
+    if (right1 - left1 > end - start) {
+      start = left1
+      end = right1
+    }
+    if (right2 - left2 > end - start) {
+      start = left2
+      end = right2
+    }
+  }
+  return s.substring(start, end + 1)
+}
+
+const expand = (s, left, right) => {
+  while (left >= 0 && right < s.length && s[left] === s[right]) {
+    left--
+    right++
+  }
+  return [left + 1, right - 1]
+}
