@@ -2,6 +2,7 @@
  * @param {number[]} nums
  * @return {number}
  */
+// 贪心
 const maxSubArray = (nums) => {
   const len = nums.length
 
@@ -12,4 +13,17 @@ const maxSubArray = (nums) => {
   }
 
   return maxAns
+};
+
+// 动态规划
+const maxSubArray1 = (nums) => {
+  const len = nums.length
+
+  for (let i = 1; i < len; i++) {
+    if (nums[i - 1] > 0) {
+      nums[i] += nums[i - 1]
+    }
+  }
+
+  return Math.max(...nums)
 };
