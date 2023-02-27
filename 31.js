@@ -38,3 +38,24 @@ const swap = (arr, start, end) => {
     end--
   }
 }
+
+const nextPermutation1 = (nums) => {
+  const len = nums.length
+  let i = nums.length - 2
+  while (i >= 0 && nums[i] >= nums[i + 1]) {
+    i--
+  }
+
+  if (i >= 0) {
+    let j = len - 1
+    while (j > 0) {
+      if (nums[i] < nums[j]) {
+        [nums[i], nums[j]] = [nums[j], nums[i]]
+        break
+      }
+      j--
+    }
+  }
+
+  swap(nums, i + 1, len - 1)
+}
