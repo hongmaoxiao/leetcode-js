@@ -28,3 +28,24 @@ const backtrack = (arr, len, ans, path, used, depth) => {
     used[i] = false;
   }
 };
+
+// 不需要借助额外空间复杂度
+const permute1 = (nums) => {
+  const len = nums.length;
+  const res = [];
+
+  const backtrack = (first = 0) => {
+    if (first === len) {
+      res.push(nums.slice());
+      return;
+    }
+    for (let i = first; i < len; i++) {
+      [nums[i], nums[first]] = [nums[first], nums[i]];
+      backtrack(first + 1);
+      [nums[i], nums[first]] = [nums[first], nums[i]];
+    }
+  };
+
+  backtrack();
+  return res;
+};
