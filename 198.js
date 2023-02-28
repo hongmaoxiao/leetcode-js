@@ -36,3 +36,22 @@ const rob1 = (nums) => {
 
   return  maxf[len - 1]
 };
+
+const rob2 = (nums) => {
+  const len = nums.length
+  if (len === 0 || !nums) {
+    return 0
+  }
+  if (len === 1) {
+    return nums[0]
+  }
+  let first = nums[0], second = Math.max(nums[0], nums[1])
+
+  for (let i = 2; i < len; i++) {
+    const temp = second
+    second = Math.max(first + nums[i], second) 
+    first = temp 
+  }
+
+  return second
+};
