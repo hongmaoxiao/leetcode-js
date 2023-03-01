@@ -21,3 +21,20 @@ const productExceptSelf = (nums) => {
 
   return nums
 };
+
+const productExceptSelf1 = (nums) => {
+  const len = nums.length
+  const answers = new Array(len).fill(0)
+  answers[0] = 1
+  for (let i = 1; i < len; i++) {
+    answers[i] = answers[i - 1] * nums[i - 1]
+  }
+
+  let mul = 1
+  for (let i = len - 1; i >= 0; i--) {
+    answers[i] = answers[i] * mul
+    mul *= nums[i]
+  }
+
+  return answers
+}
