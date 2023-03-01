@@ -15,3 +15,23 @@ const findDuplicate = (nums) => {
   }
   return slow
 };
+
+const findDuplicate1 = (nums) => {
+  const len = nums.length
+  let left = 1, right = len - 1, ans = -1
+  while (left <= right) {
+    const mid = (left + right) >> 1
+    let cnt = 0
+    for (let i = 0; i < len; i++) {
+      cnt += nums[i] <= mid
+    }
+    if (cnt <= mid) {
+      left = mid + 1
+    } else {
+      right = mid - 1
+      ans = mid
+    }
+  }
+
+  return ans
+};
