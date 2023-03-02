@@ -14,3 +14,25 @@ const lengthOfLIS = (nums) => {
   }
   return Math.max(...dp);
 };
+
+const lengthOfLIS1 = (nums) => {
+  const len = nums.length
+  const dp = new Array(len).fill(0)
+  let res = 0
+  for (const num of nums) {
+    let left = 0, right = res
+    while (left < right) {
+      const mid = (left + right) >> 1
+      if (dp[mid] < num) {
+        left = mid + 1
+      } else {
+        right = mid
+      }
+    }
+    dp[left] = num
+    if (left === res) {
+      res += 1
+    }
+  }
+  return res
+};
