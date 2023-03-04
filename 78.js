@@ -33,6 +33,5 @@ const subsets1 = (nums) => {
     }
     ans.push(t)    
   }
-
   return ans
 }
