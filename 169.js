@@ -45,3 +45,21 @@ const countOccurences = (nums, target) => {
   }
   return count
 }
+
+const majorityElement3 = (nums) => {
+  const len = nums.length
+  let candidate = nums[0]
+  let count = 1
+  for (let i = 1; i < len; i++) {
+    if (count === 0) {
+      candidate = nums[i]
+    }
+    if (nums[i] === candidate) {
+      count++
+    } else {
+      count--
+    }
+  }
+
+  return candidate
+}
