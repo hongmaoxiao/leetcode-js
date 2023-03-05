@@ -51,3 +51,23 @@ const countBits2 = (n) => {
   }
   return res
 };
+
+const countBits3 = (n) => {
+  const res = new Array(n + 1).fill(0)
+  let highBit = 0
+  for (let i = 1; i <= n; i++) {
+    if ((i & (i - 1)) === 0) {
+      highBit = i
+    }
+    res[i] = res[i - highBit] + 1
+  }
+  return res
+};
+
+const countBits4 = (n) => {
+  const res = new Array(n + 1).fill(0)
+  for (let i = 1; i <= n; i++) {
+    res[i] = res[i >> 1] + (i & 1)
+  }
+  return res
+};
