@@ -40,3 +40,29 @@ const maxDepth1 = (root) => {
 
   return Math.max(maxDepth1(root.left), maxDepth1(root.right)) + 1
 }
+
+const maxDepth2 = (root) => {
+  if (!root) {
+    return 0
+  }
+
+  let ans = 0
+
+  const queue = []
+  while (queue.length) {
+    let size = queue.length
+    while (size > 0) {
+      const first = queue.pop()
+      if (first.left) {
+        queue.unshift(first.left)
+      }
+      if (first.right) {
+        queue.unshift(first.right)
+      }
+      size--
+    }
+    ans++
+  }
+
+  return ans
+}
