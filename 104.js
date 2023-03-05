@@ -49,6 +49,7 @@ const maxDepth2 = (root) => {
   let ans = 0
 
   const queue = []
+  queue.unshift(root)
   while (queue.length) {
     let size = queue.length
     while (size > 0) {
