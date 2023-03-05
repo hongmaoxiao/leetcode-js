@@ -32,3 +32,11 @@ const maxDepth = (root) => {
   return sum
 };
 
+
+const maxDepth1 = (root) => {
+  if (!root) {
+    return 0
+  }
+
+  return Math.max(maxDepth1(root.left), maxDepth1(root.right)) + 1
+}
