@@ -34,3 +34,15 @@ const hasPathSum = (root, targetSum) => {
   pathSum(root, 0)
   return ans
 };
+
+const hasPathSum1 = (root, targetSum) => {
+  if (!root) {
+    return false
+  }
+
+  if (!root.left && !root.right) {
+    return root.val === targetSum
+  }
+
+  return hasPathSum1(root.left, targetSum - root.val) || hasPathSum1(root.right, targetSum - root.val)
+}
