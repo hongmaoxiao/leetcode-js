@@ -35,3 +35,30 @@ const levelOrderBottom = (root) => {
 
   return ans.reverse()
 };
+
+const levelOrderBottom1 = (root) => {
+  const ans = []
+  if (!root) {
+    return ans
+  }
+
+  const queue = []
+  queue.unshift(root)
+  while (queue.length) {
+    const len = queue.length
+    const list = []
+    for (let i = 0; i < len; i++) {
+      const front = queue.pop()
+      list.push(front.val)
+      if (front.left) {
+        queue.unshift(front.left)
+      }
+      if (front.right) {
+        queue.unshift(front.right)
+      }
+    }
+    ans.unshift(list)
+  }
+
+  return ans
+};
