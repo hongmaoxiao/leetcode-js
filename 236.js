@@ -27,3 +27,37 @@ const lowestCommonAncestor = (root, p, q) => {
   dfs(root, p, q)
   return ans
 };
+
+// 哈希存储父节点
+const lowestCommonAncestor1 = (root, p, q) => {
+  const father = new Map()
+  const visited = new Map()
+  
+  const dfs = (root) => {
+    if (root.left) {
+      father.set(root.left.val, root)
+      dfs(root.left)
+    }
+
+    if (root.right) {
+      father.set(root.right.val, root)
+      dfs(root.right)
+    }
+  }
+ 
+  father.set(root.val, null)
+  dfs(root)
+  while (p) {
+    visited.set(p.val, true)
+    p = father.get(p.val)
+  }
+
+  while (q) {
+    if (visited.has(q.val)) {
+      return q
+    }
+    q = father.get(q.val)
+  }
+
+  return null
+};
