@@ -10,6 +10,7 @@
  * @param {TreeNode} root
  * @return {boolean}
  */
+// 自顶向下
 const isBalanced = (root) => {
   if (!root) {
     return true;
@@ -29,3 +30,25 @@ const depth = (node) => {
 
   return Math.max(depth(node.left), depth(node.right)) + 1;
 };
+
+// 自底向上
+const isBalanced1 = (root) => {
+  if (!root) {
+    return true;
+  }
+
+  const depth = node => {
+    if (!node) {
+      return 0
+    }
+
+    const left_depth = depth(node.left)
+    const right_depth = depth(node.right)
+    if (left_depth === -1 || right_depth === -1 || Math.abs(left_depth - right_depth) > 1) {
+      return -1
+    }
+    return Math.max(left_depth, right_depth) + 1
+  }
+
+  return depth(root) > -1
+}
