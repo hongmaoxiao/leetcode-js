@@ -52,3 +52,21 @@ const flatten1 = (root) => {
     prev = curr
   }
 }
+
+// O(1)
+const flatten2 = (root) => {
+  let curr = root
+  while (curr) {
+    if (curr.left !== null) {
+      const next = curr.left
+      let predecessor = next
+      while (predecessor.right) {
+        predecessor = predecessor.right
+      }
+      predecessor.right = curr.right
+      curr.left = null
+      curr.right = next
+    }
+    curr = curr.right
+  }
+}
