@@ -25,3 +25,23 @@ const helper = (root, lower, upper) => {
 
   return helper(root.left, lower, root.val) && helper(root.right, root.val, upper)
 }
+
+// 中序遍历单调递增
+const isValidBST1 = (root) => {
+  const stack = []
+  let min = -Number.MAX_VALUE
+  while (stack.length || root) {
+    while (root) {
+      stack.push(root)
+      root = root.left
+    }
+
+    root = stack.pop()
+    if (root.val <= min) {
+      return false
+    }
+    min = root.val
+    root = root.right   
+  }
+  return true
+};
